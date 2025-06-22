@@ -1,4 +1,4 @@
-![Top 10 listing categories](https://github.com/user-attachments/assets/f484a4e6-fe17-4700-a88c-5b4f8cc9b369)# 🏡 Airbnb Price Prediction & Classification
+# 🏡 Airbnb Price Prediction & Classification
 A machine learning project to predict Airbnb listing prices and classify listings into pricing tiers (low, medium, high) using structured data and image features.
 Airbnb Property Price Prediction Model
 
@@ -88,6 +88,7 @@ Matplotlib, Seaborn for visualizations
 
 Saved processed dataset (airbnb_with_image_features.csv) for modeling
 
+![Top 10 listing categories](https://github.com/user-attachments/assets/f484a4e6-fe17-4700-a88c-5b4f8cc9b369)
 ![Distribution of Cleanliness](https://github.com/user-attachments/assets/e57d13fb-ec09-4047-a515-f8c27830b661)
 ![Distribution of check in rating](https://github.com/user-attachments/assets/aa3e05a2-3d4a-403c-ae5c-2bbc707263c7)
 ![Distribution of beds](https://github.com/user-attachments/assets/b78a564b-b81e-44a9-8ba3-0cc31479df8c)
