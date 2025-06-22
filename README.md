@@ -1,4 +1,4 @@
-# 🏡 Airbnb Price Prediction & Classification
+![Top 10 listing categories](https://github.com/user-attachments/assets/f484a4e6-fe17-4700-a88c-5b4f8cc9b369)# 🏡 Airbnb Price Prediction & Classification
 A machine learning project to predict Airbnb listing prices and classify listings into pricing tiers (low, medium, high) using structured data and image features.
 Airbnb Property Price Prediction Model
 
@@ -86,7 +86,26 @@ ResNet50 (TensorFlow) for image feature extraction
 
 Matplotlib, Seaborn for visualizations
 
-## Milestone: Data Preparation & Feature Engineering
+Saved processed dataset (airbnb_with_image_features.csv) for modeling
+
+![Distribution of Cleanliness](https://github.com/user-attachments/assets/e57d13fb-ec09-4047-a515-f8c27830b661)
+![Distribution of check in rating](https://github.com/user-attachments/assets/aa3e05a2-3d4a-403c-ae5c-2bbc707263c7)
+![Distribution of beds](https://github.com/user-attachments/assets/b78a564b-b81e-44a9-8ba3-0cc31479df8c)
+![Distribution of bedrooms](https://github.com/user-attachments/assets/c4a4e1ca-5490-4b0b-b207-272017df0c08)
+![Distribution of bathrooms](https://github.com/user-attachments/assets/bc93820b-894d-4dbc-a69c-5b9c3b34cf18)
+![Distribution of amenities](https://github.com/user-attachments/assets/cd61a778-291a-4022-adf8-56e6a1909890)
+![Distribution of Accuracy rating](https://github.com/user-attachments/assets/48702480-832b-42b1-9070-041bd2e43d1d)
+![Top 10 Locations](https://github.com/user-attachments/assets/86a7ee82-ae0e-44ab-adac-d4f16f4a1993)
+![Top 10 listing categories](https://github.com/user-attachments/assets/4e9356de-197d-4093-b35e-3859c225941c)
+![Distribution of Value rat](https://github.com/user-attachments/assets/1bf844c9-e59e-4550-b199-4792d8285680)
+![Distribution of Price_Night](https://github.com/user-attachments/assets/881e9234-c7a4-4f48-a119-15406ad5f567)
+![Distribution of Location rating](https://github.com/user-attachments/assets/bcb7a0c9-e9af-4533-b254-1bd71a8143db)
+![Distribution of guests](https://github.com/user-attachments/assets/06c8ca79-a6f0-4b0d-934f-24ca44a2e679)
+![Distribution of cummunication_rating](https://github.com/user-attachments/assets/696ffa9f-866f-4f1d-bf4a-b131d34723a6)
+
+
+
+## 📌 Milestone: Data Preparation & Feature Engineering
 🎯 Objective:
 Prepare and clean the Airbnb listings dataset and associated images for machine learning tasks. Ensure all features (structured and unstructured) are usable and informative.
 # ✅ Tasks Completed:
@@ -124,7 +143,6 @@ Final Dataset
 
 Merged structured features + image features by listing ID
 
-Saved processed dataset (airbnb_with_image_features.csv) for modeling
 
 
 ## 📌 Milestone: Regression Modeling – Predicting Airbnb Prices
@@ -173,11 +191,156 @@ Reduced overfitting and improved MAE
 | Tuned GB + PCA Image Features | 62.23    | 0.43     | ✅ Best balance of performance |
 
 
+## 📌 Milestone: Classification Modeling – Price Level Detection
 
+# 🎯 Objective:
 
+Classify Airbnb listings into price level categories (low, medium, high) and develop a binary classifier to detect low-priced listings.
 
+✅ Tasks Completed:
+Target Engineering
 
+Created Price_Level column using binning:
 
+low (< $75)
+
+medium ($75–$150)
+
+high (> $150)
+
+Created binary target: Low_Binary (1 = low, 0 = not low)
+
+Initial Modeling
+
+Trained baseline Random Forest Classifier
+
+Evaluated with accuracy, precision, recall, F1-score, and confusion matrix
+
+Addressing Class Imbalance
+
+Applied class_weight='balanced' to improve low-class recall
+
+Used SMOTE oversampling on training set
+
+Combined SMOTE + Class Weights in a neural network model for better balance
+
+Advanced Models
+
+Trained:
+
+XGBoost Classifier
+
+LightGBM Classifier
+
+Neural Network (Keras)
+
+Evaluated with classification report and ROC AUC
+
+# Binary Classification Results (Low vs Not Low)
+
+| Strategy                | Accuracy | Low Recall | AUC  | Notes                              |
+| ----------------------- | -------- | ---------- | ---- | ---------------------------------- |
+| SMOTE Only              | 78%      | 19%        | 0.70 | High accuracy, low minority recall |
+| Class Weights Only      | 66%      | 69% ✅      | 0.58 | High recall, poor precision        |
+| ✅ SMOTE + Class Weights | 71%      | 41%        | 0.64 | Best balance overall               |
+
+Visualizations
+
+ROC Curves and Confusion Matrices generated for all strategies
+
+Tracked impact of tuning on recall and false positives
+
+🧠 Outcome:
+Final model: Neural Network with SMOTE + Class Weights
+
+Best balance between detecting low-price listings and avoiding false positives
+
+Performance suitable for internal alerts, listing analysis, or dashboards
+
+## 📌 Milestone: Neural Network Development
+
+# 🎯 Objective:
+
+Explore deep learning models (Keras) to improve classification performance, especially on imbalanced classes like low-price listings.
+
+✅ Tasks Completed:
+Architecture Design
+
+Built configurable feedforward neural networks
+
+Used:
+
+Dense layers with ReLU activations
+
+Dropout regularization
+
+Sigmoid (binary) or softmax (multi-class) output layers
+
+Allowed tuning of:
+
+Layer size
+
+Dropout rate
+
+Activation functions
+
+Optimizers
+
+Model Inputs
+
+Used preprocessed structured features (ratings, counts, location)
+
+Optional inclusion of PCA image embeddings
+
+Applied StandardScaler before training
+
+Imbalance Handling Strategies
+
+Trained 3 neural network variants:
+
+A. SMOTE only
+
+B. Class weights only
+
+C. ✅ SMOTE + class weights (combined strategy)
+
+Training Techniques
+
+Used EarlyStopping to prevent overfitting
+
+Evaluated using:
+
+Validation accuracy/loss
+
+Confusion matrix
+
+ROC curve & AUC
+
+Precision, recall, F1-score
+
+# Best Neural Network Result (Strategy C)
+
+| Metric    | Not Low (0) | Low (1)    |
+| --------- | ----------- | ---------- |
+| Precision | 0.86        | 0.27       |
+| Recall    | 0.77        | **0.41** ✅ |
+| Accuracy  | 71%         |            |
+| AUC       | 0.64        |            |
+
+Visualizations
+
+ROC Curve for neural model with combined strategy
+
+Confusion matrices comparing A, B, and C
+
+# 🧠 Outcome:
+Final model: ✅ Neural Network with SMOTE + Class Weights
+
+Achieved solid balance between recall and generalization
+
+Best suited for internal usage (e.g., flagging underpriced listings)
+
+Ready for deployment or integration in dashboards
 
 
 
